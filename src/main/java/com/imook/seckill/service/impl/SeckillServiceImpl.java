@@ -15,18 +15,25 @@ import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 /**
  * Created by xianpeng.xia
  * on 2019-06-04 11:40
  */
+@Service
 public class SeckillServiceImpl implements SeckillService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
     private SeckillDao seckillDao;
+
+    @Autowired
     private SuccessKilledDao successKilledDao;
+
     private final String slat = "1!@#345435asdasdadfgdfgdfqaedasfd123$12sdj";
 
     @Override
