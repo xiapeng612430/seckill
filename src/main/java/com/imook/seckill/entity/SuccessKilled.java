@@ -53,4 +53,15 @@ public class SuccessKilled {
     public void setSeckill(Seckill seckill) {
         this.seckill = seckill;
     }
+
+    @Override
+    public String toString() {
+        return "SuccessKilled{" +
+            "seckillId=" + seckillId +
+            ", userPhone=" + userPhone +
+            ", state=" + state +
+            ", createTime=" + createTime +
+            ", seckill=" + seckill +
+            '}';
+    }
 }

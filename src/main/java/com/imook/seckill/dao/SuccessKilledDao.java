@@ -1,6 +1,7 @@
 package com.imook.seckill.dao;
 
 import com.imook.seckill.entity.SuccessKilled;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * Created by xianpeng.xia
@@ -8,8 +9,8 @@ import com.imook.seckill.entity.SuccessKilled;
  */
 public interface SuccessKilledDao {
 
-    int insertSuccessKilled(long seckillId, long userPhone);
+    int insertSuccessKilled(@Param("seckillId") long seckillId, @Param("userPhone") long userPhone);
 
-    SuccessKilled queryByIdWithSeckill(long seckillId);
+    SuccessKilled queryByIdWithSeckill(@Param("seckillId") long seckillId, @Param("userPhone") long userPhone);
 
 }
