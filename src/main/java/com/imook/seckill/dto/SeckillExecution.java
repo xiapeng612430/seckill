@@ -1,6 +1,7 @@
 package com.imook.seckill.dto;
 
 import com.imook.seckill.entity.SuccessKilled;
+import com.imook.seckill.enums.SeckillStateEnum;
 
 /**
  * Created by xianpeng.xia
@@ -13,16 +14,16 @@ public class SeckillExecution {
     private String stateInfo;
     private SuccessKilled successKilled;
 
-    public SeckillExecution(long seckillId, int state, String stateInfo) {
+    public SeckillExecution(long seckillId, SeckillStateEnum stateEnum) {
         this.seckillId = seckillId;
-        this.state = state;
-        this.stateInfo = stateInfo;
+        this.state = stateEnum.getState();
+        this.stateInfo = stateEnum.getStateInfo();
     }
 
-    public SeckillExecution(long seckillId, int state, String stateInfo, SuccessKilled successKilled) {
+    public SeckillExecution(long seckillId, SeckillStateEnum stateEnum, SuccessKilled successKilled) {
         this.seckillId = seckillId;
-        this.state = state;
-        this.stateInfo = stateInfo;
+        this.state = stateEnum.getState();
+        this.stateInfo = stateEnum.getStateInfo();
         this.successKilled = successKilled;
     }
 

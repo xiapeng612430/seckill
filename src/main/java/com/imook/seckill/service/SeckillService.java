@@ -12,7 +12,7 @@ import java.util.List;
  * Created by xianpeng.xia
  * on 2019-06-04 11:17
  */
-public interface seckillService {
+public interface SeckillService {
 
     List<Seckill> getSeckillList();
 
