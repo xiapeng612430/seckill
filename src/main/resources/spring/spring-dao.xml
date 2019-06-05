@@ -9,10 +9,10 @@
 
   <context:property-placeholder location="classpath:jdbc.properties"/>
   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-    <property name="driverClass" value="${driver}" />
-    <property name="jdbcUrl" value="${url}" />
-    <property name="user" value="${username}" />
-    <property name="password" value="${password}" />
+    <property name="driverClass" value="${driver}"/>
+    <property name="jdbcUrl" value="${url}"/>
+    <property name="user" value="${username}"/>
+    <property name="password" value="${password}"/>
 
     <property name="maxPoolSize" value="30"/>
     <property name="minPoolSize" value="10"/>
@@ -33,4 +33,8 @@
     <property name="basePackage" value="com.imook.seckill.dao"/>
   </bean>
 
+  <bean id="redisDao" class="com.imook.seckill.dao.cache.RedisDao">
+    <constructor-arg index="0" value="localhost"/>
+    <constructor-arg index="1" value="6379"/>
+  </bean>
 </beans>

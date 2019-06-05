@@ -2,6 +2,7 @@ package com.imook.seckill.service.impl;
 
 import com.imook.seckill.dao.SeckillDao;
 import com.imook.seckill.dao.SuccessKilledDao;
+import com.imook.seckill.dao.cache.RedisDao;
 import com.imook.seckill.dto.Exposer;
 import com.imook.seckill.dto.SeckillExecution;
 import com.imook.seckill.entity.Seckill;
@@ -37,6 +38,9 @@ public class SeckillServiceImpl implements SeckillService {
 
     private final String slat = "1!@#345435asdasdadfgdfgdfqaedasfd123$12sdj";
 
+    @Autowired
+    private RedisDao redisDao;
+
     @Override
     public List<Seckill> getSeckillList() {
         return seckillDao.queryAll(0, 4);
@@ -49,10 +53,16 @@ public class SeckillServiceImpl implements SeckillService {
 
     @Override
     public Exposer exportSeckillUrl(long seckillId) {
-        Seckill seckill = seckillDao.queryById(seckillId);
-        if (seckill != null) {
-            return new Exposer(false, seckillId);
+        Seckill seckill = redisDao.getSeckill(seckillId);
+        if (seckill == null) {
+            seckill = seckillDao.queryById(seckillId);
+            if (seckill != null) {
+                return new Exposer(false, seckillId);
+            } else {
+                redisDao.putSeckill(seckill);
+            }
         }
+
         Date startTime = seckill.getStartTime();
         Date endTime = seckill.getEndTime();
         Date nowTime = new Date();
